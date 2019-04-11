@@ -15,7 +15,7 @@ class PcpStreamTest extends org.scalatest.FunSuite {
       )
     )
 
-    val streamServer = StreamServer("stream_accept", (command: String, timeout: Int) => {
+    val streamServer = StreamServer[Any]("stream_accept", (command: String, timeout: Int) => {
       clientSide.execute(command)
     })
 
@@ -23,7 +23,7 @@ class PcpStreamTest extends org.scalatest.FunSuite {
       new Sandbox(
         Map[String, BoxFun](
           "streamApi" -> streamServer.streamApi(
-            (streamProducer: StreamProducer, params: List[Any], pcpServer: PcpServer) => {
+            (streamProducer: StreamProducer[Any], params: List[Any], pcpServer: PcpServer) => {
               val seed = params(0).asInstanceOf[String]
               streamProducer.sendData(seed + "1", 10)
               streamProducer.sendData(seed + "2", 10)

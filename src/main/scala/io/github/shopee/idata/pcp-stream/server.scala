@@ -3,10 +3,10 @@ package io.github.shopee.idata.pcpstream
 import io.github.shopee.idata.pcp.{ BoxFun, PcpClient, PcpServer, Sandbox }
 
 object StreamServer {
-  type CallFunc = (String, Int) => _
+  type CallFunc[T] = (String, Int) => T
 }
 
-case class StreamServer(clientAcceptName: String, callFun: StreamServer.CallFunc) {
+case class StreamServer[T](clientAcceptName: String, callFun: StreamServer.CallFunc[T]) {
   private val pcpClient = new PcpClient()
 
   def sendData(streamId: String, data: Any, timeout: Int) =
@@ -34,7 +34,7 @@ case class StreamServer(clientAcceptName: String, callFun: StreamServer.CallFunc
     )
 
   def streamApi(
-      handle: (StreamProducer, List[Any], PcpServer) => _
+      handle: (StreamProducer[T], List[Any], PcpServer) => _
   ): BoxFun =
     Sandbox.toSanboxFun((params: List[Any], pcpServer: PcpServer) => {
       if (params.length < 1) {
@@ -42,13 +42,13 @@ case class StreamServer(clientAcceptName: String, callFun: StreamServer.CallFunc
       }
 
       val streamId       = params.last.asInstanceOf[String]
-      val streamProducer = StreamProducer(streamId, this)
+      val streamProducer = StreamProducer[T](streamId, this)
 
       handle(streamProducer, params.slice(0, params.length - 1), pcpServer)
     })
 }
 
-case class StreamProducer(streamId: String, ss: StreamServer) {
+case class StreamProducer[T](streamId: String, ss: StreamServer[T]) {
   def sendData(data: Any, timeout: Int = 5 * 60 * 1000) = ss.sendData(streamId, data, timeout)
 
   def sendEnd(timeout: Int = 5 * 60 * 1000) = ss.sendEnd(streamId, timeout)
