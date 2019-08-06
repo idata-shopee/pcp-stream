@@ -1,18 +1,18 @@
-sonatypeProfileName := "io.github.idata-shopee"
+sonatypeProfileName := "io.github.lock-free"
 
 publishMavenStyle := true
 
 licenses := Seq("APL2" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt"))
 
 import xerial.sbt.Sonatype._
-sonatypeProjectHosting := Some(GitHubHosting("idata-shopee", "pcp-stream", "testinsight61@gmail.com"))
+sonatypeProjectHosting := Some(GitHubHosting("lock-free", "pcp-stream", "os.lock.free@gmail.com"))
 
-homepage := Some(url("https://github.com/idata-shopee/pcp-stream"))
+homepage := Some(url("https://github.com/lock-free/pcp-stream"))
 
 scmInfo := Some(
   ScmInfo(
-    url("https://github.com/idata-shopee/pcp-stream"),
-    "scm:git@github.com:idata-shopee/pcp-stream.git"
+    url("https://github.com/lock-free/pcp-stream"),
+    "scm:git@github.com:lock-free/pcp-stream.git"
   )
 )
 

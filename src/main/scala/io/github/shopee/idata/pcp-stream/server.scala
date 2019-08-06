@@ -1,6 +1,6 @@
-package io.github.shopee.idata.pcpstream
+package io.github.free.lock.pcpstream
 
-import io.github.shopee.idata.pcp.{ BoxFun, PcpClient, PcpServer, Sandbox }
+import io.github.free.lock.pcp.{ BoxFun, PcpClient, PcpServer, Sandbox }
 
 object StreamServer {
   type CallFunc[T] = (String, Int) => T
@@ -53,5 +53,6 @@ case class StreamProducer[T](streamId: String, ss: StreamServer[T]) {
 
   def sendEnd(timeout: Int = 5 * 60 * 1000) = ss.sendEnd(streamId, timeout)
 
-  def sendError(errMsg: String, timeout: Int = 5 * 60 * 1000) = ss.sendError(streamId, errMsg, timeout)
+  def sendError(errMsg: String, timeout: Int = 5 * 60 * 1000) =
+    ss.sendError(streamId, errMsg, timeout)
 }

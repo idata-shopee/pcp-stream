@@ -1,6 +1,6 @@
-package io.github.shopee.idata.pcpstream
+package io.github.free.lock.pcpstream
 
-import io.github.shopee.idata.pcp.{ BoxFun, PcpClient, PcpServer, Sandbox }
+import io.github.free.lock.pcp.{ BoxFun, PcpClient, PcpServer, Sandbox }
 
 class PcpStreamTest extends org.scalatest.FunSuite {
   test("base") {

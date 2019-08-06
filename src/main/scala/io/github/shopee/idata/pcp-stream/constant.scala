@@ -1,4 +1,4 @@
-package io.github.shopee.idata.pcpstream
+package io.github.free.lock.pcpstream
 
 object PcpStream {
   val STREAM_DATA  = 0

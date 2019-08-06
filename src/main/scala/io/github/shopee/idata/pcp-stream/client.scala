@@ -1,9 +1,9 @@
-package io.github.shopee.idata.pcpstream
+package io.github.free.lock.pcpstream
 
 import java.util.concurrent.ConcurrentHashMap
 import java.util.UUID.randomUUID
 import scala.collection.convert.decorateAsScala._
-import io.github.shopee.idata.pcp.{ BoxFun, CallResult, PcpClient, PcpServer, Sandbox }
+import io.github.free.lock.pcp.{ BoxFun, CallResult, PcpClient, PcpServer, Sandbox }
 
 object StreamClient {
   type StreamCallbackFunc = (Int, Any) => _
